@@ -7,9 +7,9 @@ class ItemModel
     public function __construct()
     {
         // Connect to the database
-        $dsn = 'mysql:host=localhost;dbname=your_database_name';
-        $username = 'your_username';
-        $password = 'your_password';
+        $dsn = 'mysql:host=db;dbname=db_mvc';
+        $username = 'lamp_docker';
+        $password = 'password';
         $this->db = new PDO($dsn, $username, $password);
     }
 
