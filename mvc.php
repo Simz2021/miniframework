@@ -18,7 +18,7 @@ class Mvc
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $requestUrl = $_SERVER['REQUEST_URI'];
-
+        
         // Remove query string from the URL if present
         if (($pos = strpos($requestUrl, '?')) !== false) {
             $requestUrl = substr($requestUrl, 0, $pos);

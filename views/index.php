@@ -10,8 +10,8 @@
     <h1>Item List</h1>
 
     <!-- Form to add an item -->
-    <form action="/item/add" method="post">
-        <input type="text" name="item" placeholder="Enter item name" required>
+    <form id="item-form">
+        <input type="text" id="item-input" placeholder="Enter item name" required>
         <button type="submit">Add Item</button>
     </form>
 

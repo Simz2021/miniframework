@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__.'/../models/ItemModel.php';
 class ItemController
 {
     private $itemModel;
@@ -15,13 +15,37 @@ class ItemController
         require_once __DIR__ . '/../views/index.php';
     }
 
-    public function add()
+    /*public function add()
     {
         // Logic to handle adding an item
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $item = $_POST['item'] ?? '';
             $this->itemModel->addItem($item);
             // Redirect or return response
+        }
+    }*/
+    public function test()
+    {
+        echo "Routing test successful!";
+    }
+    
+    public function addItem()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $itemName = $_POST['item'];
+
+            // Validate the input
+
+            // Add the item to the database
+            $itemId = $this->itemModel->addItem($itemName);
+
+            if ($itemId) {
+                // Item added successfully
+                echo json_encode(['success' => true, 'message' => 'Item added successfully.', 'itemId' => $itemId]);
+            } else {
+                // Error adding item
+                echo json_encode(['success' => false, 'message' => 'Error adding item.']);
+            }
         }
     }
 
@@ -45,4 +69,12 @@ class ItemController
             // Redirect or return response
         }
     }
+
+    public function getItems() {
+        $items = $this->itemModel->getItems();
+    
+        // Return the items as JSON response
+        header('Content-Type: application/json');
+        echo json_encode($items);
+      }
 }
