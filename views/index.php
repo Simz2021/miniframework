@@ -1,5 +1,9 @@
 <!-- index.php -->
-
+<?php 
+    require_once __DIR__ . '../../controllers/ItemController.php';
+    $listitems = new ItemController();
+    $items = json_decode($listitems->getItems(),true);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +23,19 @@
     <ul>
         <?php foreach ($items as $item) : ?>
             <li>
-                <span><?= $item->name ?></span>
+                <span><?= $item['name']; ?></span>
                 <form action="/item/delete" method="post">
-                    <input type="hidden" name="delete" value="<?= $item->id ?>">
+                    <input type="hidden" name="delete" value="<?= $item['id']; ?>">
                     <button type="submit">Delete</button>
                 </form>
                 <form action="/item/edit" method="post">
-                    <input type="hidden" name="editItemId" value="<?= $item->id ?>">
-                    <input type="text" name="newItemName" value="<?= $item->name ?>" required>
+                    <input type="hidden" name="editItemId" value="<?= $item['id']; ?>">
+                    <input type="text" name="newItemName" value="<?= $item['name']; ?>" required>
                     <button type="submit">Save</button>
                 </form>
             </li>
         <?php endforeach; ?>
     </ul>
-
     <script src="../public/js/script.js"></script>
 </body>
 </html>

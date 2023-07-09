@@ -26,7 +26,7 @@ class ItemController
     }*/
     public function test()
     {
-        echo "Routing test successful!";
+        include __DIR__."/../views/test.php";
     }
     
     public function addItem()
@@ -72,9 +72,6 @@ class ItemController
 
     public function getItems() {
         $items = $this->itemModel->getItems();
-    
-        // Return the items as JSON response
-        header('Content-Type: application/json');
-        echo json_encode($items);
+        return json_encode($items);
       }
 }

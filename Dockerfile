@@ -23,3 +23,8 @@ RUN docker-php-ext-enable mysqli
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
+# COPY /apache2.conf /etc/apache2/apache2.conf
+# COPY /apache2.conf /etc/apache2/sites-enabled/000-default.conf
+
+RUN a2enmod rewrite
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf

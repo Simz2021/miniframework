@@ -7,6 +7,7 @@ class Mvc
     public function get($url, $controllerMethod)
     {
         $this->routes['GET'][$url] = $controllerMethod;
+        
     }
 
     public function post($url, $controllerMethod)
@@ -27,7 +28,6 @@ class Mvc
         if (isset($this->routes[$requestMethod][$requestUrl])) {
             $controllerMethod = $this->routes[$requestMethod][$requestUrl];
             list($controllerName, $methodName) = explode('@', $controllerMethod);
-
             $controllerFile = 'controllers/' . $controllerName . '.php';
             if (file_exists($controllerFile)) {
                 require_once $controllerFile;
@@ -42,3 +42,4 @@ class Mvc
         }
     }
 }
+
