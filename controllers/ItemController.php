@@ -72,6 +72,16 @@ class ItemController
 
     public function getItems() {
         $items = $this->itemModel->getItems();
-        return json_encode($items);
+        $count = count($items);    
+        $cleanItems = [];
+        for ($i = 0; $i < $count; $i++) {
+            $value = $items[$i];
+            $cleanItems[] = json_encode($value,16);
+        }
+        $cleanItems = implode(",",$cleanItems);
+        // Output the JSON encoded items
+        $cleanItems = explode(",",$cleanItems);
+        return $cleanItems;
+        
       }
 }

@@ -1,10 +1,9 @@
-console.log("This is the script");
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('item-form').addEventListener('submit', function(e) {
       e.preventDefault();
       var itemInput = document.getElementById('item-input');
       var item = itemInput.value.trim();
-  
+      console.log(item);
       if (item !== '') {
         addItem(item);
         itemInput.value = '';
@@ -12,12 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   
     function addItem(item) {
+      console.log("You are here");
+      console.log("You are adding"+item);
       fetch('/add-item', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ item: item }),
+        body: JSON.stringify({ name: item }),
       })
         .then(function(response) {
           if (response.ok) {
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
   
-    function updateItemList() {
+/*    function updateItemList() {
       fetch('/get-items')
         .then(function(response) {
           if (response.ok) {
@@ -51,7 +52,23 @@ document.addEventListener('DOMContentLoaded', function() {
           console.error(error);
         });
     }
-  
+*/  
+function updateItemList() {
+  fetch('/get-items')
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Error getting items: ' + response.status);
+      }
+    })
+    .then(function(data) {
+      renderItems(data);
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+}
     function renderItems(items) {
       var itemList = document.getElementById('item-list');
       itemList.innerHTML = '';

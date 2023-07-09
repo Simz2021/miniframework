@@ -2,7 +2,8 @@
 <?php 
     require_once __DIR__ . '../../controllers/ItemController.php';
     $listitems = new ItemController();
-    $items = json_decode($listitems->getItems(),true);
+    $items = $listitems->getItems();
+    print_r($items);
 ?>
 <!DOCTYPE html>
 <html>
