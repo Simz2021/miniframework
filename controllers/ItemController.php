@@ -81,7 +81,7 @@ class ItemController
         $cleanItems = implode(",",$cleanItems);
         // Output the JSON encoded items
         $cleanItems = explode(",",$cleanItems);
-        return $cleanItems;
+        return json_encode($cleanItems,true);
         
       }
 }

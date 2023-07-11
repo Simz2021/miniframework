@@ -12,3 +12,23 @@ ul {
     margin-right: 10px;
   }
   
+  .item-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #00ff00;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
