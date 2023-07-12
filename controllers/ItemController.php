@@ -32,8 +32,9 @@ class ItemController
     public function addItem()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
             $itemName = $_POST['item'];
-
+  
             // Validate the input
 
             // Add the item to the database
@@ -70,7 +71,7 @@ class ItemController
         }
     }
 
-    public function getItems() {
+    /* public function getItems() {
         $items = $this->itemModel->getItems();
         $count = count($items);    
         $cleanItems = [];
@@ -83,5 +84,21 @@ class ItemController
         $cleanItems = explode(",",$cleanItems);
         return json_encode($cleanItems,true);
         
-      }
+      } */
+      public function getItems() {
+        $items = $this->itemModel->getItems();
+        $cleanItems = [];
+        
+        foreach ($items as $item) {
+            $cleanItems[] = [
+                'id' => $item->id,
+                'name' => $item->name,
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at
+            ];
+        }
+        
+        echo json_encode($cleanItems);
+    }
+    
 }
