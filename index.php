@@ -13,4 +13,6 @@ $app->get('/zone', 'HomeController@zonepage');
 $app->get('/new','ItemController@test');
 $app->get('/get-items', 'ItemController@getItems');
 $app->post('/add-item', 'ItemController@addItem');
+$app->post('/item/delete', 'ItemController@delete');
+ 
 $app->run();

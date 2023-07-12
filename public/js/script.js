@@ -3,13 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     var itemInput = document.getElementById("item-input");
     var item = itemInput.value.trim();
-    console.log(item);
+
     if (item !== "") {
       addItem(item);
       itemInput.value = "";
     }
   });
+  document
+    .getElementById("del-item-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+      var itemId = document.getElementById("delete");
+      var itemIddel = itemId.value.trim();
 
+      if (itemIddel !== "") {
+        delItem(itemIddel);
+      }
+    });
   function addItem(item) {
     var dataobj = "item=" + encodeURIComponent(item);
     $.ajax({
@@ -24,7 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-
+  function delItem(item) {
+    var dataobj = "item=" + encodeURIComponent(item);
+    $.ajax({
+      url: "/del-item",
+      method: "POST",
+      data: dataobj,
+      success: function (response) {
+        updateItemList();
+      },
+      error: function (error) {
+        console.log("No error");
+      },
+    });
+  }
   function updateItemList() {
     $.get("/get-items", function (data) {
       renderItems(data);
@@ -44,22 +67,22 @@ document.addEventListener("DOMContentLoaded", function () {
     itemsjson.forEach(function (item) {
       var listItem = document.createElement("li");
       listItem.innerHTML = `
-          <span>${item.name}</span>
-          <form action="/item/delete" method="post">
-              <input type="hidden" name="delete" value="${item.id}">
-              <button type="submit">Delete</button>
+          <span class="item-name">${item.name}</span>
+          <form action="/item/delete" method="post" id="del-item-form">
+              <input type="hidden" name="delete" id="delete" value="${item.id}">
+              <button type="submit" class="delete-btn">Delete</button>
           </form>
           <form action="/item/edit" method="post">
               <input type="hidden" name="editItemId" value="${item.id}">
-              <input type="text" name="newItemName" value="${item.name}" required>
-              <button type="submit">Save</button>
+              <input type="text" name="newItemName"  value="${item.name}" required>
+              <button type="submit" class="edit-btn">Save</button>
           </form>
       `;
 
       itemList.appendChild(listItem);
     });
   }
-
-  // Initial load
-  updateItemList();
 });
+
+// Initial load
+updateItemList();
