@@ -1,9 +1,10 @@
 <!-- index.php -->
 <?php 
-    require_once __DIR__ . '../../controllers/ItemController.php';
+/*     require_once __DIR__ . '../../controllers/ItemController.php';
     $listitems = new ItemController();
     $items = $listitems->getItems();
-   print_r(json_decode($items));
+  
+    // print_r(json_decode($items));
 
     echo "<br>";
     // Assuming the original array is stored in the variable $data
@@ -20,7 +21,7 @@
 ];
 */
 // Clean up the array and convert to readable JSON
-$cleanedData = [];
+/* $cleanedData = [];
 for ($i = 0; $i < count($data); $i += 4) {
     $record = [
         'id' => intval(trim($data[$i], '{"')),
@@ -34,14 +35,14 @@ for ($i = 0; $i < count($data); $i += 4) {
 $cleanedJson = json_encode($cleanedData, JSON_PRETTY_PRINT);
 $cleanedJson = json_decode($cleanedJson);
 //var_dump($cleanedJson);
-echo count($cleanedJson);
+//echo count($cleanedJson);
 $cleanstr = [];
 for ($i = 0; $i < count($cleanedJson); $i++) {
     $cleanstr[] = $cleanedJson[$i]; 
 }
 echo "<pre>";
-print_r($cleanstr[0]);
-echo "</pre>";
+print_r($cleanstr);
+echo "</pre>"; */
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,6 +86,7 @@ ul {
 }
 
     </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Item List</h1>
@@ -96,21 +98,25 @@ ul {
     </form>
 
     <!-- List of items -->
-    <ul>
-        <?php foreach ($cleanstr as $item) : ?>
-            <li>
-            <span class="item-name"><?= $item->name; ?></span>
-                <form action="/item/delete" method="post">
-                    <input type="hidden" name="delete" value="<?= $item->id; ?>">
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
-                <form action="/item/edit" method="post">
-                    <input type="hidden" name="editItemId" value="<?= $item->id; ?>">
-                    <input type="text" name="newItemName" value="<?= $item->name; ?>" required>
-                    <button type="submit" class="edit-btn">Save</button>
-                </form>
-            </li>
-        <?php endforeach; ?>
+    <ul id="item-list">
+ 
+        <li>
+           
+            <form action="/item/delete" method="post">
+                <input type="hidden" name="delete" value="<?= $item->id; ?>">
+                <button type="submit">Delete</button>
+            </form>
+            <form action="/item/edit" method="post">
+                <input type="hidden" name="editItemId" value="<?= $item->id; ?>">
+                <input type="text" name="newItemName" value="<?= $item->name; ?>" required>
+                <button type="submit">Save</button>
+            </form>
+        </li>
+
+   
+</ul>
+
+
     </ul>
     <script src="../public/js/script.js"></script>
 </body>
