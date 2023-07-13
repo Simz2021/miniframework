@@ -23,7 +23,7 @@ switch ($route) {
         break;
     default:
         http_response_code(404);
-        echo 'yest 404 Not Found';
+        echo 'yes 404 Not Found';
         break;
 }
 

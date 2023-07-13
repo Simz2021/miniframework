@@ -14,5 +14,5 @@ $app->get('/new','ItemController@test');
 $app->get('/get-items', 'ItemController@getItems');
 $app->post('/add-item', 'ItemController@addItem');
 $app->post('/item/delete', 'ItemController@delete');
- 
+$app->post('/item/edit','ItemController@edit');
 $app->run();

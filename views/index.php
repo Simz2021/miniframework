@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Item List</title>
-    <script src="../public/js/script.js"></script>
+   
     <style>
 ul {
     list-style: none;
@@ -58,6 +58,6 @@ ul {
 
 
     </ul>
-
+    <script src="../public/js/script.js"></script>
 </body>
 </html>
