@@ -68,7 +68,8 @@ class ItemController
             $itemId = $_POST['editItemId'] ?? '';
             $newItemName = $_POST['newItemName'] ?? '';
             $this->itemModel->editItem($itemId, $newItemName);
-            // Redirect or return response
+
+            include __DIR__."/../views/index.php";
         }
     }
 
