@@ -11,7 +11,9 @@ ul {
   li span {
     margin-right: 10px;
   }
-  
+  ul li {
+    margin-bottom: 10px;
+  }
   .item-name {
     font-weight: bold;
     font-size: 18px;

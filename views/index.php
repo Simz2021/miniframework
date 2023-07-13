@@ -4,44 +4,7 @@
 <html>
 <head>
     <title>Item List</title>
-   
-    <style>
-ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-  }
-
-  li span {
-    margin-right: 10px;
-  }
-  
-  .item-name {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.delete-btn {
-    background-color: #ff0000;
-    color: #ffffff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.edit-btn {
-    background-color: #00ff00;
-    color: #ffffff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-    </style>
+    <link rel="stylesheet" href="../public/css/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

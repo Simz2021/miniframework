@@ -3,7 +3,7 @@ function updateItemList() {
     renderItems(data);
   })
     .done(function () {
-      console.log("Items retrieved successfully");
+      return true;
     })
     .fail(function (error) {
       console.error("Error getting items:", error);
@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
       itemInput.value = "";
     }
   });
-  document
-    .getElementById("del-item-form")
-    .addEventListener("submit", function (e) {
+  var delItemForm = document.getElementById("del-item-form");
+  if (delItemForm) {
+    delItemForm.addEventListener("submit", function (e) {
       e.preventDefault();
       var itemId = document.getElementById("delete");
       var itemIddel = itemId.value.trim();
@@ -57,21 +57,25 @@ document.addEventListener("DOMContentLoaded", function () {
         delItem(itemIddel);
       }
     });
-  if (e.target.classList.contains("edit-form")) {
-    e.preventDefault();
-    var listItem = e.target.closest("li");
-    var itemId = listItem.querySelector(
-      'form[action="/item/edit"] input[name="editItemId"]'
-    ).value;
-    var editInput = listItem.querySelector(
-      'form[action="/item/edit"] input[name="newItemName"]'
-    );
-    var newItemName = editInput.value.trim();
-
-    if (newItemName !== "") {
-      editItem(itemId, newItemName);
-    }
   }
+  document.addEventListener("submit", function (e) {
+    if (e.target.classList.contains("edit-form")) {
+      e.preventDefault();
+      var listItem = e.target.closest("li");
+      var itemId = listItem.querySelector(
+        'form[action="/item/edit"] input[name="editItemId"]'
+      ).value;
+      var editInput = listItem.querySelector(
+        'form[action="/item/edit"] input[name="newItemName"]'
+      );
+      var newItemName = editInput.value.trim();
+
+      if (newItemName !== "") {
+        editItem(itemId, newItemName);
+      }
+    }
+  });
+
   function addItem(item) {
     var dataobj = "item=" + encodeURIComponent(item);
     $.ajax({
@@ -116,5 +120,4 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-  renderItems(item);
 });
