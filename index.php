@@ -7,7 +7,7 @@ require_once __DIR__ . '/mvc.php';
 $app = new Mvc();
 
 // Define routes
-$app->get('/', 'HomeController@index');
+$app->get('/', 'ItemController@index');
 $app->get('/get-items', 'ItemController@getItems');
 $app->post('/add-item', 'ItemController@addItem');
 $app->post('/item/delete', 'ItemController@delete');
